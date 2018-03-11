@@ -1,22 +1,38 @@
-money = 500
+user_amount = input('Please enter Amount: ')
+user_balance = input('Please enter Balance: ')
+amount = user_amount
+if user_balance > user_amount and user_balance > 0 and user_amount > 0 :
+    while amount >= 100:
+        print 'give 100'
+        amount = amount - 100
+    while amount >= 50:
+        print 'give 50'
+        amount = amount - 50
 
-request = 277
+    while amount >= 10:
+        print 'give 10'
+        amount = amount - 10
 
-while request >= 100:
-    print 'give 100'
-    request = request - 100
-while request >= 50:
-    print 'give 50'
-    request = request - 50
+    while amount >= 5:
+        print 'give 5'
+        amount = amount - 5
 
-while request >= 10:
-    print 'give 10'
-    request = request - 10
+    while amount >= 2:
+        print 'give 2'
+        amount = amount - 2
 
-while request >= 5:
-    print 'give 5'
-    request = request - 5
+    if amount == 1:
+        print 'This is the remaining:', amount
+        total = user_balance - user_amount + amount
+        print 'Balance remaining', total
 
-while request >= 2:
-    print 'give 2'
-    request = request - 2
+    else:
+        print 'The full amount has been withdraw'
+        total = user_balance - user_amount
+        print 'Balance remaining', total
+
+else:
+    if user_balance > 0 or user_amount > 0 :
+        print "please check th input"
+    else:
+        print "The existing balance is insufficient"

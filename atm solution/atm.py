@@ -1,8 +1,7 @@
-user_amount = input('Please enter Amount: ')
-user_balance = input('Please enter Balance: ')
-amount = user_amount
-if user_balance > user_amount and user_balance > 0 and user_amount > 0 :
-    while amount > 0 :
+""" withdraw Function """
+def withdraw(balance, amount):
+    amount_discount = amount
+    while amount > 0:
         if amount >= 100:
             print 'give 100'
             amount = amount - 100
@@ -18,21 +17,34 @@ if user_balance > user_amount and user_balance > 0 and user_amount > 0 :
             print 'give 5'
             amount = amount - 5
 
-        elif amount >= 2:
-            print 'give 2'
-            amount = amount - 2
-        elif amount == 1:
-            print 'This is the remaining:', amount
-            total = user_balance - user_amount + amount
-            print 'Balance remaining', total
-            amount = amount - 1
         else:
-            print 'The full amount has been withdraw'
-            total = user_balance - user_amount
-            print 'Balance remaining', total
+            print 'give', amount
+            amount = 0
 
+    return balance - amount_discount
+
+
+user_balance = input('Please enter Balance: ')
+balance = user_balance
+if balance > 0:
+    while(True):
+        user_amount = raw_input('Please enter Amount (q for quit): ')
+        amount = user_amount
+        print 'Current', balance
+        if amount > 0:
+            if user_amount != 'q':
+                if balance < int(amount) :
+                    print "Can't give you all this money !!"
+                    break;
+                else:
+                    balance = withdraw(balance, int(amount))
+            else:
+                print 'Thank you for use ATM'
+                break;
+        else:
+            print 'Please check the Amount'
 else:
-    if user_balance > 0 or user_amount > 0 :
-        print "please check th input"
-    else:
-        print "The existing balance is insufficient"
+    print 'Please check the Balance'
+
+
+

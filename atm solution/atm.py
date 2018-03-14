@@ -39,10 +39,10 @@ def withdraw(user_balance):
 
                 else:
                     print 'Please check the Amount'
-                    break;
+                    break
             else:
                 print 'Thank you for use ATM'
-                break;
+                break
     else:
         print 'Please check the Balance'
 

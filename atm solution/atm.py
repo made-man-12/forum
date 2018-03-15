@@ -1,3 +1,4 @@
+
 """ Function section"""
 def withdraw(balance, amount):
     amount_discount = amount
@@ -38,15 +39,15 @@ if len(user_balance) > 0 and user_balance.isdigit() is True and int(user_balance
 
                 if balance < amount:
                     print "Can't give you all this money !!"
-                    break;
+                    break
                 else:
                     balance = withdraw(balance,amount)
             else:
                 print 'Please check the Amount'
-                break;
+                break
         else:
             print 'Thank you for use ATM'
-            break;
+            break
 else:
     print 'Please check the Balance'
 

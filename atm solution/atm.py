@@ -7,6 +7,7 @@ class ATM:
     def withdraw (self):
         user_balance = raw_input('Please enter Balance: ')
         user_bank_name = raw_input("Enter The bank name:")
+        self.withdraw_list = []
 
         if self.v_input(user_balance, True) is True and self.v_input(user_bank_name, False) is True :
             self.balance = int(user_balance)
@@ -16,7 +17,7 @@ class ATM:
             return
 
         while (True):
-            user_amount = raw_input('Please enter Amount (q for quit): ')
+            user_amount = raw_input('Please enter Amount ( r for receipt or q for quit): ')
 
             self.dash(30)
             self.dash(30)
@@ -24,20 +25,32 @@ class ATM:
             print 'Current Balance = %d' %self.balance
             self.dash(30)
 
-            if user_amount != 'q':
+            if user_amount == 'r':
+                self.show_receipt(self.withdraw_list)
+
+            elif user_amount != 'q' or user_amount == 'r':
                 if self.v_input(user_amount, True) is True :
                     amount = int(user_amount)
+                    self.withdraw_list.append(amount)
                     if self.balance < amount:
                         print "Can't give you all this money !!"
-                        break;
+                        self.dash(20)
+                        print 'Receipt'
+                        self.dash(20)
+                        self.show_receipt(self.withdraw_list)
+                        self.dash(20)
+                        break
+
                     else:
                         self.balance = self.rebate_money(amount)
+
                 else:
                     print 'Please check the Amount'
-                    break;
+                    break
+
             else:
                 print 'Thank you for use ATM'
-                break;
+                break
             self.dash(45)
 
 
@@ -53,6 +66,9 @@ class ATM:
     def dash (self, time = 40):
         print '-' * time
 
+    def show_receipt(self, receipt):
+        for item in receipt:
+            print item
 
     def rebate_money(self, amount):
         rebate = amount

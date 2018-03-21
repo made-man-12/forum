@@ -37,6 +37,7 @@ class MemberStore:
             if new_member.id is member.id:
                 self.delete(member.id)
                 MemberStore.members.append(new_member)
+                MemberStore.members.sort(key=lambda members: members.id)
 
     def get_by_name(self, member_name):
         all_members = self.get_all()

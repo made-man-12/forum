@@ -1,16 +1,18 @@
-class MemberStore:
+__metaclass__ = type
 
-    members = []
-    last_id = 1
+
+class BaseStore:
+    def __init__(self,data_provider, last_id):
+        self._data_provider = data_provider
+        self._last_id = last_id
 
     def get_all(self):
-        return self.members
+        return self._data_provider
 
-    @staticmethod
-    def add(member):
-        member.id = MemberStore.last_id
-        MemberStore.members.append(member)
-        MemberStore.last_id += 1
+    def add(self,item_instance):
+        item_instance.id = self.last_id
+        self._data_provider.append(item_instance)
+        self.last_id += 1
 
     def get_by_id(self, iden):
         all_members = self.get_all()
@@ -18,9 +20,9 @@ class MemberStore:
             if iden is member.id:
                 return member
 
-    def entity_exists(self, member):
+    def entity_exists(self, item_instance):
         result = True
-        if self.get_by_id(member.id) is None:
+        if self.get_by_id(item_instance.id) is None:
             result = False
 
         return result
@@ -31,13 +33,22 @@ class MemberStore:
             if iden is member.id:
                 all_members.remove(member)
 
-    def update(self, new_member):
+    def update(self, item_instance):
         all_members = self.get_all()
         for member in all_members:
-            if new_member.id is member.id:
+            if item_instance.id is member.id:
                 self.delete(member.id)
-                MemberStore.members.append(new_member)
-                MemberStore.members.sort(key=lambda members: member.id)
+                self._data_provider.append(item_instance)
+                self._data_provider.sort(key=lambda members: member.id)
+
+
+class MemberStore(BaseStore):
+
+    members = []
+    last_id = 1
+
+    def __init__(self):
+        super(MemberStore, self).__init__(MemberStore.members, MemberStore.last_id)
 
     def get_by_name(self, member_name):
         all_members = self.get_all()
@@ -62,42 +73,15 @@ class MemberStore:
         all_members_posts.sort(key=lambda member: len(member.posts), reverse=True)
         return all_members_posts
 
-class PostStore :
+
+class PostStore(BaseStore):
     posts = []
     last_id = 1
 
-    def get_all(self):
-        return self.posts
+    def __init__(self):
+        super(PostStore, self).__init__(PostStore.posts, PostStore.last_id)
 
-    @staticmethod
-    def add(post):
-        post.id = PostStore.last_id
-        PostStore.posts.append(post)
-        PostStore.last_id += 1
-
-    def get_by_id(self, iden):
-        all_post = self.get_all()
-        for post in all_post:
-            if iden is post.id:
-                return post
-
-    def entity_exists(self, post):
-        result = True
-        if self.get_by_id(post.id) is None:
-            result = False
-
-        return result
-
-    def delete(self,id):
-        all_post = self.get_all()
-        for post in all_post:
-            if id is post.id:
-                all_post.remove(post)
-
-    def update(self, new_post):
-        all_post = self.get_all()
-        for post in all_post:
-            if new_post.id is post.id:
-                self.delete(post.id)
-                PostStore.post.append(new_post)
-                PostStore.post.sort(key=lambda members: member.id)
+    def get_post_by_date(self):
+        all_posts = self.get_all()
+        all_posts.sort(key=lambda post: post.date, reverse=True)
+        return all_posts

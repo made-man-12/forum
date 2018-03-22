@@ -1,5 +1,6 @@
 import models
 import stores
+import time
 
 
 def create_members():
@@ -50,7 +51,7 @@ def update_should_modify_object(member_store, member3):
     member3_copy = models.Member(member3.name, member3.age)
     member3_copy.id = 3
 
-    if member3_copy is not member3:
+    if member3_copy != member3:
         print "member3 and member3_copy are not the same !"
 
     print member3_copy
@@ -77,16 +78,21 @@ def catch_exception_when_deleting():
 def create_posts(members_instances):
 
     post1 = models.Post("Agriculture", "Agriculture is amazing", members_instances[0].id)
+    time.sleep(1)
     post2 = models.Post("Engineering", "I love engineering", members_instances[0].id)
 
     post3 = models.Post("Medicine", "Medicine is great", members_instances[1].id)
     post4 = models.Post("Architecture", "Spectacular art", members_instances[1].id)
+    time.sleep(1)
     post5 = models.Post("Astronomy", "Space is awesome", members_instances[1].id)
+
 
     post6 = models.Post("Geology", "Earth is our friend", members_instances[2].id)
     post7 = models.Post("ComputerSci", "Our passion", members_instances[2].id)
+    time.sleep(1)
     post8 = models.Post("Algorithms", "Yeah, more of that", members_instances[2].id)
     post9 = models.Post("Operating Systems", "Ewww", members_instances[2].id)
+
 
     print post1
     print post2
@@ -119,6 +125,14 @@ def store_should_get_top_two(member_store, post_store):
         print "{} has posts:".format(member_with_posts)
         for post in member_with_posts.posts:
             print "\t{}".format(post)
+
+
+def store_should_get_post_by_date(post_store):
+    posts_by_date = post_store.get_post_by_date()
+    print '-'*15
+    for post in posts_by_date:
+        print "\t{} time {:%M:%S}".format(post, post.date)
+
 
 members_instances = create_members()
 member1, member2, member3 = members_instances
@@ -153,5 +167,7 @@ store_should_add_posts(posts_instances, post_store)
 store_should_get_members_with_posts(member_store, post_store)
 
 store_should_get_top_two(member_store, post_store)
-#member_store.get_top_two(post_store.get_all())
+
+store_should_get_post_by_date(post_store)
+
 

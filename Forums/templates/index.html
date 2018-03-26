@@ -1,162 +1,89 @@
-<html class="" lang="en"><head><style></style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Million Arab Coders</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-prototype.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" type="text/css">
+{% extends "base.html" %}
 
-<meta class="foundation-mq">
-<style>
-    h1,h2,h3,h4,h5,h6{
-        font-family: "Roboto", Arial, Helvetica, sans-serif;
-    }
-</style>
-</head>
-<body style='font-family: "Roboto", Arial, Helvetica, sans-serif;'>
+{% block content %}
 
-<header style="background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);">
+    <article class="grid-container article-cont-1">
+        <div class="text-left article-header-1">
+                <h4 class="text-left">Latest Topics</h4>
+        <div>
 
-
-
-<div style="background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);border: 0;" class="callout large primary">
-<div class="text-center">
-<h1 style="color: white;font-weight: 300;">One Million Coders</h1>
-</div>
-</div>
-
-<article class="grid-container">
-
-</article>
-
-<br>
-<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium" style="display: none;" data-e="1om2mz-e">
-
-<button class="menu-icon" type="button" data-toggle=""></button>
-<div class="title-bar-title">Menu</div>
-</div> 	 
-</header>
-
-<article class="grid-container" style="z-index: -1;margin-top: -37px;background: white;border-radius: 4px 4px 0 0;">
-
-<div style="padding-top: 50px;margin-bottom: 50px;color: #676767; " class="text-left">
-<h4 style="margin: 50px 0px;font-weight: 300;" class="text-left">Latest Topics</h4>
-<div>
-
-
-<div class="grid-x grid-margin-x">
-<div class="large-8 cell">
-    <div class="grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x ">
             <div class="large-8 cell">
-                    <a href="about.html" class="button" style="background: #4a569d;">New Topic   <i class="fi-pencil"></i>
-                    </a>
+                <div class="grid-x grid-margin-x article-topbar">
+                    <div class="large-8 cell">
+                        <a href="#" class="button" >
+                            New Topic   <i class="fi-pencil"></i>
+                        </a>
+                    </div>
+                    <div class="large-1 cell">
+                        <button class="button" >Search</button>
+                    </div>
+                    <div class="large-3 cell">
+                        <input type="search" name="search" placeholder="Search.." class="animated-search-form">
+                    </div>
+
+                </div>
+
+                <div class="forumbg announcement">
+                    <div class="grid-x grid-margin-x forumbg-top" >
+                        <div class="large-9 cell">
+                            <p>Topice</p>
+                        </div>
+                        <div class="large-3 cell">
+                            <l class="fi-clock"></l>
+                        </div>
+                    </div>
+
+                    {% for post in posts %}
+                    <div class="grid-x grid-margin-x post">
+                        <div class="large-1 cell">
+                            <a class="button secondary" href="#">Edit</a>
+                            <a class="button alert" href="#">Delete</a>
+                        </div>
+                        <div class="large-8 cell">
+                            <h6><a href="#">'{{ post.title }}</a></h6>
+                            <p>By :<a href="#">Member1</a></p>
+                        </div>
+                        <div class="large-3 cell">
+                            <p>By :<a href="#">Member1</a></p>
+                            <p>Sun Oct 09, 2016 6:59 pm </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
             </div>
-            <div class="large-1 cell">
-                    <button class="button" style="background: #4a569d;padding: 11px 8px;">Search</button>
+            <!-- Sidebar -->
+            <div class="large-4 cell">
+                <aside class="sidebar_widget">
+                    <div class="grid-x widget-top" >
+                        <div class="large-9 cell">
+                            <p>Top Member</p>
+                        </div>
+                        <div class="large-3 cell">
+                            <i class="fi-results"></i>
+                        </div>
+                    </div>
+                    <div class="grid-x cell widget-content">
+                        <div class="large-9 cell">
+                            <p>Member 1</p>
+                        </div>
+                        <div class="large-3 cell">
+                            <p>4</p>
+                        </div>
+                    </div>
+
+                    <div class="grid-x cell widget-content">
+                        <div class="large-9 cell">
+                            <p>Member 1</p>
+                        </div>
+                        <div class="large-3 cell">
+                            <p>4</p>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <div class="large-3 cell">
-                    <input type="search" name="search" placeholder="Search.." class="animated-search-form">
-            </div>
-            
-    </div>
-
-<div class="forumbg announcement" style="margin: 23px 0px 0px 0px; background-color: #F8F8F8;">
-        <div class="grid-x grid-margin-x" style="background: linear-gradient(to right, #4a569d 1%,#dc2424 100%);color: white;border-radius: 4px 4px 0 0;">
-                <div class="large-9 cell">
-                    <p style="font-size: 1.1em;line-height: 2.3em;margin-bottom:0">Topice</p>
-                </div>
-                <div class="large-3 cell">
-                        <i class="fi-clock" style="position: relative;top: 9px;font-size: 1.5em;margin: 10px auto;margin-bottom: 0;"></i>
-                </div>
         </div>
+    </article>
 
-
-        <div class="grid-x grid-margin-x" style="border-bottom: solid 1px #ECF0F1;background-color: #FFFFFF;padding: 10px 0;margin: 3px;">
-                <div class="large-1 cell">
-                        <a class="button secondary" href="#" style="/*! padding: 15px; */">Edit</a>
-                        <a class="button alert" href="#" style="padding: 6px;">Delete</a> 
-                </div>
-                <div class="large-8 cell">
-                    <h6 style="margin-bottom: 0;"><a href="#">'Death Star' Vaporizes Its Own Planet</a></h6>
-                    <p style="margin-bottom: 0; font-size: 14px;">By :<a href="#"style="color: #AA0000;font-weight: 500;">Member1</a></p>
-                    
-                </div>
-                <div class="large-3 cell" style="font-size: 14px;">
-                    <p style="margin-bottom: 0;">By :<a href="#"style="color: #AA0000;font-weight: 500;">Member1</a></p>
-                    <p>Sun Oct 09, 2016 6:59 pm </p>
-                </div>
-                
-        </div>
-        <div class="grid-x grid-margin-x" style="border-bottom: solid 1px #ECF0F1;background-color: #FFFFFF;padding: 10px 0;margin: 3px;">
-                <div class="large-1 cell">
-                        <a class="button secondary" href="#" style="/*! padding: 15px; */">Edit</a>
-                        <a class="button alert" href="#" style="padding: 6px;">Delete</a> 
-                </div>
-                <div class="large-8 cell">
-                    <h6 style="margin-bottom: 0;"><a href="#">'Death Star' Vaporizes Its Own Planet</a></h6>
-                    <p style="margin-bottom: 0; font-size: 14px;">By :<a href="#"style="color: #AA0000;font-weight: 500;">Member1</a></p>
-                </div>
-                <div class="large-3 cell" style="font-size: 14px;">
-                    <p style="margin-bottom: 0;">By :<a href="#"style="color: #AA0000;font-weight: 500;">Member1</a></p>
-                    <p>Sun Oct 09, 2016 6:59 pm </p>
-                </div>
-        </div>
-    
-            
-</div>
-
-</div>
-<div class="large-4 cell">
-<aside class="sidebar_widget" style="background-color: #F8F8F8;">
-        <div class="grid-x" style="background: #343840;color: white;border-radius: 4px 4px 0 0;">
-                <div class="large-9 cell">
-                    <p style="font-size: 1.1em;line-height: 2.3em;margin-bottom:0;margin-left: 8px;">Top Member</p>
-                </div>
-                <div class="large-3 cell">
-                        <i class="fi-results" style="position: relative;top: 9px;font-size: 1.5em;margin: 10px auto;margin-bottom: 0;"></i>
-                </div>
-        </div>
-    <div class="grid-x cell" style="border-bottom: solid 1px#ECF0F1;background-color: #FFFFFF;margin: 2px;">
-            <div class="large-9 cell">
-                    <p style="margin: 10px;">Member 1</p>
-                </div>
-                <div class="large-3 cell">
-                    <p style="margin: 10px 0px;">4</p>
-                </div>
-    </div>
-
-    <div class="grid-x cell" style="border-bottom: solid 1px#ECF0F1;background-color: #FFFFFF;margin: 2px;">
-            <div class="large-9 cell">
-                    <p style="margin: 10px;">Member 2</p>
-                </div>
-                <div class="large-3 cell">
-                    <p style="margin: 10px 0px;">3</p>
-                </div>
-    </div>
-
-</aside>
-</div>
-</div>
-</article>
-<footer style="background: #e3e3e3;">
-
-<div class="grid-x grid-margin-y expanded">
-
-<div class="medium-12 cell">
-<ul class="menu align-center">
-<li class="menu-text">Copyright © One Million Arab Coders</li>
-</ul>
-</div>
-</div>
-</footer>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.3/motion-ui.min.js"></script>
-<script>
-      $(document).foundation();
-    </script>
-
-
-</body></html>
+{% endblock content %}

@@ -134,3 +134,11 @@ h1,h2,h3,h4,h5,h6{
 footer{
     background: #e3e3e3;
 }
+
+form  .submit-form{
+    background-color: #4a569d;
+}
+
+form { 
+    margin: 50px 0;
+}
